@@ -10,23 +10,10 @@ class Weather {
   }
 }
 
-const weather = new Weather();
+module.exports = Weather;
 
-weather.fetchWeatherData('Manchester', (weatherData) => {
-  console.log(JSON.parse(weatherData));
-})
+// const weather = new Weather();
 
-
-// const got = require('got');
-//const apiKey = 'a793f0752d0998a7d22a32b35631d8d5'; // paste your API key here
-// const city = 'London';
-// const apiUrl = `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
-
-// let weatherData = null;
-
-// got(apiUrl).then((response) => {
-//   weatherData = JSON.parse(response.body);
-//   console.log(`The weather today in ${weatherData.name} will be ${weatherData.weather[0].description}`);
-// });
-
-// console.log('Requesting weather data');
+// weather.fetchWeatherData('Manchester', (weatherData) => {
+//   console.log(JSON.parse(weatherData));
+// })
