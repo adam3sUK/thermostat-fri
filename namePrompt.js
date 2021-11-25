@@ -1,5 +1,11 @@
-const readlineSync = require('readline-sync');
+const readline = require('readline');
 
-// Wait for user's response.
-var userName = readlineSync.question('What is your name? ');
-console.log(`Welcome ${userName}`);
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('What is your name? ', (userName) => {
+  console.log(`Welcome ${userName}`);
+  rl.close();
+});
