@@ -8,7 +8,11 @@ class Thermostat {
   }
 
   getTemperature() {
-    return this.temperature;
+    if (this.powerSavingMode == true && this.temperature == this.maxTemperatureLow) {
+    return `${this.temperature} (maximum reached)`;}
+    else if (this.powerSavingMode == false && this.temperature == this.maxTemperatureHigh) {
+    return `${this.temperature} (maximum reached)`;}
+    else {return this.temperature}
   }
 
   up() {
@@ -35,20 +39,9 @@ class Thermostat {
   }
 
   getCurrentEnergyUsage() {
-    if (this.temperature < 18)
-    {
-      return "Low-usage";
-    }
-
-    else if (this.temperature <= 25)
-    {
-      return "Medium-usage";
-    }
-
-    else
-    {
-      return "High-usage";
-    }
+    if (this.temperature < 18) {return "Low-usage";}
+    else if (this.temperature <= 25) {return "Medium-usage";}
+    else {return "High-usage";}
   }
 }
 
