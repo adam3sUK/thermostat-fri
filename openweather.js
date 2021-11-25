@@ -10,7 +10,7 @@ class Weather {
   }
 }
 
-module.exports = Weather;
+module.exports = Weather, apiKey;
 
 // const weather = new Weather();
 

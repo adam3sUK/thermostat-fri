@@ -1,10 +1,22 @@
+const Weather = require('./openweather');
+const got = require('got');
+
+
 class Thermostat {
-  constructor() {
+  constructor(weather) {
     this.temperature = 20;
     this.maxTemperatureLow = 25;
     this.maxTemperatureHigh = 32;
     this.minTemperature = 10;
     this.powerSavingMode = true;
+    this.weather = weather;
+  }
+
+  setCity(city) {
+    this.weather.fetchWeatherData(city, (weatherData) => {
+      const weatherApi = JSON.parse(weatherData);
+      this.temperature = weatherApi.main.temp;
+    })
   }
 
   getTemperature() {
@@ -44,5 +56,13 @@ class Thermostat {
     else {return "High-usage";}
   }
 }
+
+const weather = new Weather();
+thermostat = new Thermostat(weather);
+thermostat.setCity('Manchester');
+setTimeout(() => {
+  console.log(thermostat.getTemperature())
+}, 2000);
+
 
 module.exports = Thermostat;
