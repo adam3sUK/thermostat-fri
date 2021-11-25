@@ -1,7 +1,8 @@
 class Thermostat {
   constructor() {
     this.temperature = 20;
-    this.maxTemperature = 25;
+    this.maxTemperatureLow = 25;
+    this.maxTemperatureHigh = 32;
     this.minTemperature = 10;
     this.powerSavingMode = true;
   }
@@ -11,10 +12,10 @@ class Thermostat {
   }
 
   up() {
-    if (this.powerSavingMode == false) {
+    if (this.powerSavingMode == false && this.temperature < this.maxTemperatureHigh) {
       return this.temperature += 1;
     }
-    else if (this.powerSavingMode == true && this.temperature < this.maxTemperature) {
+    else if (this.powerSavingMode == true && this.temperature < this.maxTemperatureLow) {
       return this.temperature += 1;
     }
   }

@@ -1,18 +1,13 @@
 const Thermostat = require('./thermostat');
-/*
-thermostat.reset();
-thermostat.getTemperature(); // should be back to 20
-*/
 
 describe('Thermostat', () => {
+  thermostat = new Thermostat();
   it('starts with a temperature of 20', () => {
-    thermostat = new Thermostat();
     expect(thermostat.getTemperature()).toBe(20);
   });
 
   describe('up()', () => {
     it('increases temperature by 1', () => {
-      thermostat = new Thermostat();
       thermostat.up();
       expect(thermostat.getTemperature()).toBe(21);
     });
@@ -20,13 +15,12 @@ describe('Thermostat', () => {
 
   describe('down()', () => {
     it('decreases temperature by 1', () => {
-      thermostat = new Thermostat();
+      thermostat.down();
       thermostat.down();
       expect(thermostat.getTemperature()).toBe(19);
     });
 
     it('wont decrease past min temperature of 10', () => {
-      thermostat = new Thermostat();
       for (let i = 0 ; i < 20 ; i++) {
         thermostat.down();
       }
@@ -36,30 +30,26 @@ describe('Thermostat', () => {
 
   describe('setPowerSavingMode()', () => {
     it('setPowerSavingMode(true) sets max temperature to 25', () => {
-      thermostat = new Thermostat();
       thermostat.setPowerSavingMode(true);
       expect(thermostat.powerSavingMode).toBe(true);
-      for (let i = 0 ; i < 10 ; i++) {
+      for (let i = 0 ; i < 15 ; i++) {
         thermostat.up();
       }
       expect(thermostat.getTemperature()).toBe(25);
     });
 
-    it('setPowerSavingMode(false) removes max temperature cap', () => {
-      thermostat = new Thermostat();
-      thermostat.setPowerSavingMode(true);
-      for (let i = 0 ; i < 10 ; i++) {
+    it('setPowerSavingMode(false) sets max temperature to 32', () => {
+      thermostat.setPowerSavingMode(false);
+      for (let i = 0 ; i < 20 ; i++) {
         thermostat.up();
       }
-      thermostat.setPowerSavingMode(false);
       thermostat.up();
-      expect(thermostat.getTemperature()).toBe(26);
+      expect(thermostat.getTemperature()).toBe(32);
     });
   });
 
   describe('reset()', () => {
     it('sets temperature back to 20', () => {
-      thermostat = new Thermostat();
       for (let i = 0 ; i < 10 ; i++) {
         thermostat.up();
       }
