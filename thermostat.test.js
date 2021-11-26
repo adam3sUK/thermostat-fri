@@ -1,7 +1,9 @@
 const Thermostat = require('./thermostat');
+const Weather = require('./openweather')
+const weather = new Weather;
 
 describe('Thermostat', () => {
-  thermostat = new Thermostat();
+  thermostat = new Thermostat(weather);
   it('starts with a temperature of 20', () => {
     expect(thermostat.getTemperature()).toBe(20);
   });
@@ -35,7 +37,7 @@ describe('Thermostat', () => {
       for (let i = 0 ; i < 15 ; i++) {
         thermostat.up();
       }
-      expect(thermostat.getTemperature()).toBe(25);
+      expect(thermostat.getTemperature()).toBe("25 (maximum reached)");
     });
 
     it('setPowerSavingMode(false) sets max temperature to 32', () => {
@@ -44,7 +46,7 @@ describe('Thermostat', () => {
         thermostat.up();
       }
       thermostat.up();
-      expect(thermostat.getTemperature()).toBe(32);
+      expect(thermostat.getTemperature()).toBe("32 (maximum reached)");
     });
   });
 
@@ -55,6 +57,17 @@ describe('Thermostat', () => {
       }
       thermostat.reset();
       expect(thermostat.getTemperature()).toBe(20);
+    });
+  });
+
+  describe('setCity()', () => {
+    it('sets the tempature of the themostat to match that of the city entered', () => {
+      thermostat.setCity('London');
+      setTimeout(() => {
+        thermostat.getTemperature();
+      }, 500);
+      const newTemp = thermostat.getTemperature();
+      expect(thermostat.getTemperature()).toEqual(newTemp);
     });
   });
 

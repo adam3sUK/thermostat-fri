@@ -1,4 +1,3 @@
-const Weather = require('./openweather');
 const got = require('got');
 
 
@@ -14,8 +13,8 @@ class Thermostat {
 
   setCity(city) {
     this.weather.fetchWeatherData(city, (weatherData) => {
-      const weatherApi = JSON.parse(weatherData);
-      this.temperature = weatherApi.main.temp;
+      this.temperature = weatherData;
+      return weatherData;
     })
   }
 
@@ -56,13 +55,6 @@ class Thermostat {
     else {return "High-usage";}
   }
 }
-
-const weather = new Weather();
-thermostat = new Thermostat(weather);
-thermostat.setCity('Manchester');
-setTimeout(() => {
-  console.log(thermostat.getTemperature())
-}, 2000);
 
 
 module.exports = Thermostat;

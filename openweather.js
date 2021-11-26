@@ -5,7 +5,7 @@ class Weather {
   fetchWeatherData = (city, callback) => {
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`; 
     got(apiUrl).then((response) => {
-      callback(response.body);
+      callback(JSON.parse(response.body).main.temp)
     });
   }
 }

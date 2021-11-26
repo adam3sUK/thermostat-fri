@@ -1,4 +1,3 @@
-const { exit } = require('process');
 const readlineSync = require('readline-sync');
 const Thermostat = require('./thermostat');
 thermostat = new Thermostat();
