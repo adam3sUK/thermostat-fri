@@ -1,6 +1,5 @@
 const got = require('got');
 
-
 class Thermostat {
   constructor(weather) {
     this.temperature = 20;

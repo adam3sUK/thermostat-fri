@@ -4,5 +4,22 @@
     "got": "^11.8.3",
     "jest": "^27.3.1",
     "readline-sync": "^1.4.10"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "thermostat-fri",
+  "description": "",
+  "version": "1.0.0",
+  "main": "async.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam3sUK/thermostat-fri.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adam3sUK/thermostat-fri/issues"
+  },
+  "homepage": "https://github.com/adam3sUK/thermostat-fri#readme"
 }
